@@ -55,7 +55,7 @@ describe('Sensui', () => {
             //Call Sensui
             const options = {
                 method: 'POST',
-                uri: 'https://api.uport.space/sensui/fund',
+                uri: 'https://api.uport.me/sensui/fund',
                 body: {
                     tx: signedTx,
                     blockchain: 'rinkeby'

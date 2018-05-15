@@ -1,2 +1,2 @@
-# integration-tests
+# service-tests
 Test servers from the outside
