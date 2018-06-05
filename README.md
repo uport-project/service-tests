@@ -13,5 +13,7 @@ Create a `.env` file following the example at `env-sample`
 
 `npm test __tests__/sensui_fund.js`
 
+## Test sensui relay
 
+`npm test __tests__/sensui_relay.js`
 
