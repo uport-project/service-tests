@@ -68,6 +68,14 @@ describe('Sensui', () => {
         signer.signRawTxAsync(rawTx)
         .then( (metaSignedTx) => {
             console.log("metaSignedTx:"+metaSignedTx);
+            let decodedMetaTx = signers.TxRelaySigner.decodeMetaTx(metaSignedTx)
+            const nonce='0';
+            const validMetaSig = signers.TxRelaySigner.isMetaSignatureValid(
+                relayAddress,
+                decodedMetaTx,
+                nonce
+            );
+            expect(validMetaSig).toEqual(true);
             
             //Call Sensui
             const options = {
