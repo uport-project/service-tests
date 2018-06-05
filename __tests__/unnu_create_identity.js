@@ -13,6 +13,7 @@ describe('Unnu', () => {
         recoveryKey=generate(entropy);
 
         console.log("DeviceKey   : "+deviceKey.address);
+        console.log(deviceKey)
         console.log("RecoveryKey : "+recoveryKey.address);
 
         fuelTokenMgr= new FuelTokenMgr();
@@ -25,7 +26,7 @@ describe('Unnu', () => {
         
         const options = {
             method: 'POST',
-            uri: 'https://api.uport.space/unnu/createIdentity',
+            uri: 'https://api.uport.me/unnu/createIdentity',
             body: {
                 deviceKey: deviceKey.address,
                 recoveryKey: recoveryKey.address,

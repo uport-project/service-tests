@@ -79,6 +79,7 @@ describe('Sensui', () => {
         })
         .catch((err) =>{
             fail(err);
+            done(err);
         });
     });
 
