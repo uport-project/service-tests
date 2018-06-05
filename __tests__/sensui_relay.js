@@ -10,8 +10,8 @@ const UportIdentity = require('uport-identity');
 const proxyAddress = process.env.PROXY_ADDRESS;// the address of your proxy contract
 const metaIdentityManagerAddress = UportIdentity.MetaIdentityManager.v2.networks['4'].address// the address of the metaIdentityManager contract
 const relayAddress = UportIdentity.TxRelay.v2.networks['4'].address // the address of the txRelay contract
-const txSenderAddress = '0x0' // the address of the service that is sending your tx
-const whitelistOwner = '0x0'// the owner of a specific whitelist in the txRelay contract. Can be the zero address for no whitelist.
+const txSenderAddress = '0xb608a90ffc3fd6f61f78edad1e0a6a6974f9dcc5' // the address of the service that is sending your tx
+const whitelistOwner = '0x0000000000000000000000000000000000000000'// the owner of a specific whitelist in the txRelay contract. Can be the zero address for no whitelist.
 
 describe('Sensui', () => {
 
