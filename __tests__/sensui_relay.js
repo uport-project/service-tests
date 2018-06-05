@@ -58,7 +58,7 @@ describe('Sensui', () => {
             deviceKey, 
             relayAddress, 
             txSenderAddress, 
-            '0x0')
+            whitelistOwner)
         const signer = Promise.promisifyAll(
             new signers.MIMProxySigner(proxyAddress, txRelaySigner, metaIdentityManagerAddress)
         );
@@ -69,6 +69,7 @@ describe('Sensui', () => {
         .then( (metaSignedTx) => {
             console.log("metaSignedTx:"+metaSignedTx);
             let decodedMetaTx = signers.TxRelaySigner.decodeMetaTx(metaSignedTx)
+            console.log("decodedMetaTx.claimedAddress:" + decodedMetaTx.claimedAddress)
             const nonce='0';
             const validMetaSig = signers.TxRelaySigner.isMetaSignatureValid(
                 relayAddress,
