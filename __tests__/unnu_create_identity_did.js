@@ -1,5 +1,5 @@
 const generate = require('ethjs-account').generate
-const FuelTokenMgr = require("../src/lib/fuelTokenMgr");
+const FuelTokenDidMgr = require("../src/lib/fuelTokenDidMgr");
 require('dotenv').config();
 const rp = require('request-promise');
 
@@ -16,31 +16,32 @@ describe('Unnu', () => {
         console.log(deviceKey)
         console.log("RecoveryKey : "+recoveryKey.address);
 
-        fuelTokenMgr= new FuelTokenMgr();
-        fuelTokenMgr.setSecrets(process.env);
+        fuelTokenDidMgr= new FuelTokenDidMgr();
+        fuelTokenDidMgr.setSecrets(process.env);
     })
 
     test('/createIdentity', done => {
         //Create fuelToken for deviceKey
-        const fuelToken=fuelTokenMgr.newToken(deviceKey.address);
-        
-        const options = {
-            method: 'POST',
-            uri: 'https://api.uport.me/unnu/createIdentity',
-            body: {
-                deviceKey: deviceKey.address,
-                recoveryKey: recoveryKey.address,
-                blockchain: 'rinkeby',
-                managerType: 'MetaIdentityManager'
-            },
-            headers: {
-                'Authorization': 'Bearer '+fuelToken
-            },
-            json: true 
-        };
-        console.log(options);
-
-        rp(options)
+        fuelTokenDidMgr.newToken(deviceKey.address)
+        .then( (fuelToken) => {
+            const options = {
+                method: 'POST',
+                uri: 'https://api.uport.me/unnu/createIdentity',
+                body: {
+                    deviceKey: deviceKey.address,
+                    recoveryKey: recoveryKey.address,
+                    blockchain: 'rinkeby',
+                    managerType: 'MetaIdentityManager'
+                },
+                headers: {
+                    'Authorization': 'Bearer '+fuelToken
+                },
+                json: true 
+            };
+    
+            console.log(options)
+            return rp(options)
+        })
         .then( (parsedBody) =>{
             console.log(parsedBody);
             expect(parsedBody.status).toEqual('success')
